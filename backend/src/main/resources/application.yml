@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 7d
+      cookie:
+        http-only: true
+        same-site: lax
+spring:
+  application:
+    name: shiguang-studio
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/shiguang_studio?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: ${DB_USERNAME:shiguang_app}
+    password: ${DB_PASSWORD}
+  config:
+    import: optional:file:./.local/application-local.properties
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      connect-timeout: 1s
+      timeout: 1s
+  session:
+    redis:
+      namespace: shiguang:session
+  flyway:
+    locations: classpath:db/migration
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+studio:
+  cache:
+    business-loads: 4
+    account-loads: 2
+    load-wait-ms: 50
+    account-wait-ms: 500

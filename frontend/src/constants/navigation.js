@@ -1,0 +1,33 @@
+export const navigation = {
+  customer: [
+    ['/customer', '发现见微'],
+    ['/customer/assistant', '见微助手'],
+    ['/customer/notices', '预约须知'],
+    ['/customer/appointments', '我的预约'],
+    ['/customer/requests', '我的申请'],
+    ['/customer/messages', '消息中心'],
+    ['/customer/profile', '个人中心'],
+  ],
+  admin: [
+    ['/admin', '经营概览'],
+    ['/admin/assistant', '见微助手'],
+    ['/admin/appointments', '预约管理'],
+    ['/admin/resources', '套餐与资源'],
+    ['/admin/schedules', '排班管理'],
+    ['/admin/customers', '客户档案'],
+    ['/admin/requests', '人工申请'],
+    ['/admin/rules', '业务规则'],
+    ['/admin/knowledge', '知识库'],
+    ['/admin/team', '员工权限'],
+    ['/admin/logs', '操作日志'],
+  ],
+  staff: [
+    ['/staff', '今日工作'],
+    ['/staff/assistant', '见微助手'],
+    ['/staff/schedules', '我的排期'],
+    ['/staff/customers', '客户档案'],
+    ['/staff/requests', '申请处理'],
+    ['/staff/messages', '消息中心'],
+    ['/staff/profile', '个人中心'],
+  ],
+}

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "shiguang-agent"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["fastapi", "uvicorn[standard]", "pydantic-settings", "langgraph", "langgraph-checkpoint-postgres", "langchain-openai", "psycopg[binary,pool]", "cryptography", "httpx", "rocketmq-python-client==5.1.2", "mcp==2.3.0"]
+[project.optional-dependencies]
+test = ["pytest", "pytest-asyncio", "httpx"]
+[tool.setuptools.packages.find]
+include = ["app*"]
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+pythonpath = ["."]

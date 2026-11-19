@@ -1,0 +1,250 @@
+.booking-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.booking-tabs button {
+  background: #e5f0f2;
+  padding: 12px 22px;
+  border-radius: 4px;
+}
+.booking-tabs .active {
+  background: #346e7b;
+  color: white;
+}
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin: 24px 0;
+}
+.booking-form label {
+  font-size: 14px;
+}
+.booking-form input,
+.booking-form select,
+.booking-form textarea,
+.period-row input,
+.list-toolbar input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  margin-top: 8px;
+  color: inherit;
+  border-radius: 3px;
+  font: inherit;
+}
+.booking-form textarea {
+  resize: vertical;
+}
+.booking-form .full {
+  grid-column: 1/-1;
+}
+.check-label {
+  display: flex !important;
+  gap: 8px;
+  align-items: center;
+  margin: 12px 0;
+}
+.check-label input {
+  width: auto !important;
+  margin: 0 !important;
+}
+.booking-form fieldset {
+  border: 1px solid var(--line);
+  min-width: 0;
+  font-size: 14px;
+}
+.form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.resource-list {
+  margin-top: 24px;
+}
+.resource-list article {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  padding: 24px 0;
+}
+.resource-list article > div {
+  flex: 1;
+  min-width: 0;
+}
+.resource-list p {
+  font-size: 14px;
+  color: var(--sub);
+}
+.resource-list h3 {
+  margin-bottom: 8px;
+}
+.resource-list h3 small {
+  font-size: 13px;
+  margin-left: 10px;
+}
+.period-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 550px;
+  margin: 14px 0;
+}
+.period-row input {
+  min-width: 0;
+  flex: 1;
+  width: 0;
+}
+.period-row button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.schedule-fields {
+  border: 0;
+  padding: 0;
+}
+.schedule-fields > .primary-button {
+  margin-top: 24px;
+}
+.schedule-fields > .subtle {
+  margin-top: 18px;
+  font-size: 14px;
+}
+.slot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0;
+}
+.slot-grid button {
+  padding: 12px 20px;
+  background: #e5f0f2;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+.slot-grid .active {
+  background: #346e7b;
+  color: white;
+}
+.booking-confirm {
+  margin-top: 24px;
+  padding: 24px;
+  background: #e5f0f2;
+  border-radius: 4px;
+}
+.booking-confirm h3 {
+  margin-bottom: 16px;
+}
+.booking-confirm p {
+  font-size: 14px;
+}
+.package-book {
+  display: block;
+  margin-top: 22px;
+}
+.list-toolbar {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+.list-toolbar input {
+  display: inline;
+  width: auto;
+}
+.appointment-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+}
+.appointment-card h3 {
+  margin: 10px 0;
+}
+.appointment-card p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.appointment-card small {
+  overflow-wrap: anywhere;
+}
+.pagination {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 22px;
+  font-size: 14px;
+}
+.panel + .panel {
+  margin-top: 24px;
+}
+.profile dd {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 640px) {
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+  .resource-list article {
+    flex-wrap: wrap;
+  }
+  .resource-list article > div {
+    flex-basis: 100%;
+  }
+  .appointment-card {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pagination {
+    gap: 10px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .period-row {
+    gap: 6px;
+  }
+  .booking-tabs {
+    flex-wrap: wrap;
+  }
+  .booking-confirm {
+    padding: 18px;
+  }
+}
+
+
+/* Shared date fields retain native calendar and keyboard interaction. */
+input[type='date'] {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink, #29383e);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  color-scheme: light;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+input[type='date']:hover:not(:disabled) { border-color: #a3bcc2; }
+input[type='date']:focus-visible {
+  outline: none;
+  border-color: #5a8993;
+  box-shadow: 0 0 0 3px rgba(52, 110, 123, .1);
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+  padding: 3px;
+  margin-left: 8px;
+  opacity: .6;
+  cursor: pointer;
+}
+input[type='date']:disabled { opacity: .55; cursor: not-allowed; }

@@ -1,0 +1,51 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: shiguang_studio
+      MYSQL_USER: shiguang_app
+      MYSQL_PASSWORD: ${DB_PASSWORD:?请在.env配置DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?请在.env配置MYSQL_ROOT_PASSWORD}
+      TZ: Asia/Shanghai
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+  app:
+    build: .
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/shiguang_studio?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      DB_USERNAME: shiguang_app
+      DB_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATA_REDIS_HOST: redis
+      STUDIO_BOOTSTRAP_ADMIN_PHONE: ${ADMIN_PHONE:?请配置ADMIN_PHONE}
+      STUDIO_BOOTSTRAP_ADMIN_PASSWORD: ${ADMIN_PASSWORD:?请配置ADMIN_PASSWORD}
+      STUDIO_SEED_ENABLED: ${SEED_ENABLED:-false}
+      STUDIO_SEED_PASSWORD: ${SEED_PASSWORD:-}
+      TZ: Asia/Shanghai
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  mysql-data:
+  redis-data:

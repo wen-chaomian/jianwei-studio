@@ -1,0 +1,33 @@
+# Local configuration, credentials and runtime data
+.env
+.env.*
+!.env.example
+.local/
+*.local.properties
+application-local.*
+*.pem
+*.key
+*.p12
+*.jks
+*.dump
+*.log
+*.pid
+reports/
+*.docx
+
+# Dependencies, generated artifacts and developer tooling
+node_modules/
+dist/
+target/
+release/
+backend/src/main/resources/static/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.idea/
+.run/
+.vscode/
+*.iml
+.DS_Store

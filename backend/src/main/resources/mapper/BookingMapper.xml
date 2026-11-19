@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shiguang.studio.mapper.BookingMapper">
+  <select id="appointments" resultType="com.shiguang.studio.entity.Appointment">
+    SELECT a.*,(SELECT r.type FROM customer_request r WHERE r.appointment_id=a.id AND r.type IN ('CANCEL','RESCHEDULE') AND r.status IN ('PENDING','PROCESSING') ORDER BY r.id LIMIT 1) AS pending_request_type FROM appointment a WHERE 1=1 
+    <if test='customer!=null'>AND customer_id=#{customer}</if>
+
+    <if test='photographer!=null'>AND photographer_id=#{photographer}</if>
+
+    <if test='date!=null'>AND start_time &gt;= #{date} AND start_time &lt; DATE_ADD(#{date},INTERVAL 1 DAY)</if>
+ ORDER BY start_time DESC,id DESC LIMIT #{size} OFFSET #{offset}
+  </select>
+  <select id="countAppointments" resultType="long">
+    SELECT COUNT(*) FROM appointment WHERE 1=1 
+    <if test='customer!=null'>AND customer_id=#{customer}</if>
+
+    <if test='photographer!=null'>AND photographer_id=#{photographer}</if>
+
+    <if test='date!=null'>AND start_time &gt;= #{date} AND start_time &lt; DATE_ADD(#{date},INTERVAL 1 DAY)</if>
+  </select>
+</mapper>
